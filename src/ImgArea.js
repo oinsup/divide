@@ -14,22 +14,16 @@ const ImgArea = () => {
     const [pos,setPos] = useState()
     const onDragEnd = (e) => {
         setPos(e.clientX);
-        setPos(e.changedTouches[0].clientX)
     }
     const onTouchEnd = (e)=> {
         setPos(e.changedTouches[0].clientX);
     }    
-    const Handler = styled.div`
-        position:absolute;
-        left:${pos+"px"};
-        top:0;
-        background:#fff;
-        z-index:10;
-    `
     return (
         <ImgGroup>
-            <ImgBox width={pos}/>
-            <Handler className='handler' onDragEnd={onDragEnd} onTouchEnd={onTouchEnd}  draggable><span>handle</span></Handler>
+            <ImgBox width={(pos / window.innerWidth) * 100 + "%"}/>
+            <div className='handler' style={{left: (pos / window.innerWidth) * 100 + "%"}}>
+                <span onDragEnd={onDragEnd} onTouchEnd={onTouchEnd} onDrag={onDragEnd} onTouchMove={onTouchEnd} draggable>handle</span>
+            </div>
             <ImgBox/>
         </ImgGroup>
     );
