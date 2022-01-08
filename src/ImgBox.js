@@ -9,7 +9,7 @@ const ImgBox = (props) => {
             flex:1;
         }
         border-right:1px solid #000;
-        width:50%;
+        width:${props.width+"px"||50+"%"};
         position:relative;
         img{width:100%;height:100%;}
     `
